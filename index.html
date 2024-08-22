@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LEO COMICS</title>
+  <style>
+html,
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  height: 100%;
+  padding: 0;
+}
+
+header {
+  margin: 0;
+  height: 4em;
+  border-bottom: solid #111 0.125em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  font-family: Archivo Black;
+  color: #962e34;
+  text-outline: solid black 2px;
+  text-shadow: 4px 4px 1px #0072bc;
+	-webkit-text-stroke: 1px black;
+}
+
+main {
+  background: #A4DDED;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#frame {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+#frame img {
+  display: block;
+  width: calc(11in/2);
+  height: calc(17in/2);
+	cursor: pointer;
+	background: #111;
+}
+
+#frame img.fullscreen {
+  height: 100vh;
+}
+
+#by {
+  padding-top: 2em;
+  padding-bottom: 4em;
+  width: calc(11in/2);
+  margin: 0 auto;
+}
+
+time {
+  float: right;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1>LEO COMICS</h1>
+</header>
+
+<main>
+  <div id="frame">
+    <img src="donk.jpg">
+  </div>
+  <div id="by">
+		<strong>Donk</strong><br />
+    <cite>Max Terry</cite>
+    <time>2024-08-21</time>
+  </div>
+</main>
+
+<footer>
+  <span>Copyright 2024</span>
+  <p></p>
+  <div id="sfc92th798ucxlczf71x13p8q6syx9g2xa4"></div>
+  <script type="text/javascript" src="https://counter2.optistats.ovh/private/counter.js?c=92th798ucxlczf71x13p8q6syx9g2xa4&down=async" async></script>
+  <noscript>
+    <a href="https://www.freecounterstat.com" title="hit counter">
+      <img src="https://counter2.optistats.ovh/private/freecounterstat.php?c=92th798ucxlczf71x13p8q6syx9g2xa4" border="0" title="hit counter" alt="hit counter">
+    </a>
+  </noscript>
+  <p></p>
+</footer>
+
+<script>
+  function generatePaperTexture(width, height, color) {
+    var canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, width, height);
+
+    var imageData = ctx.getImageData(0, 0, width, height);
+    var data = imageData.data;
+
+    for (var i = 0; i < data.length; i += 4) {
+      var noise = Math.random() * 20;
+      data[i] += noise;
+      data[i + 1] += noise;
+      data[i + 2] += noise;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    var grainOpacity = 0.05;
+    for (var i = 0; i < data.length; i += 4) {
+      var grain = Math.random() * 255 * grainOpacity;
+      data[i] += grain;
+      data[i + 1] += grain;
+      data[i + 2] += grain;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    return canvas.toDataURL('image/png');
+  }
+
+  document.querySelector('#frame').addEventListener('click', function() {
+    if (!document.fullscreenElement) {
+      document.querySelector('#frame img').requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  });
+
+  document.addEventListener('fullscreenchange', function() {
+    if (document.fullscreenElement) {
+      document.querySelector('#frame img').classList.add('fullscreen');
+    } else {
+      document.querySelector('#frame img').classList.remove('fullscreen');
+    }
+  });
+
+  var header = generatePaperTexture(800, 800, '#fff200');
+  var main = generatePaperTexture(800, 300, '#6ecff6');
+  var footer = generatePaperTexture(800, 300, '#faf0e6');
+
+  document.querySelector('header').style.backgroundImage = 'url(' + header + ')';
+  document.querySelector('main').style.backgroundImage = 'url(' + main + ')';
+  document.querySelector('footer').style.backgroundImage = 'url(' + footer + ')';
+</script>
+
+</body>
+</html>
