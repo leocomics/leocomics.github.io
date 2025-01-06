@@ -85,22 +85,22 @@ footer {
 </header>
 
 <main>
-  <div id="frame">
-    <img src="donk.jpg">
-  </div>
-  <div id="by">
-    <strong>Donk</strong><br />
-    <cite>Max Terry</cite>
-    <time>2024-08-21</time>
-  </div>
-  <hr />
-  <div id="frame">
+  <div class="frame">
     <img src="the-tree-that-owns-itself.jpg">
   </div>
   <div id="by">
     <strong>The Tree That Owns Itself</strong><br />
     <cite>Max Terry</cite>
     <time>2025-01-05</time>
+  </div>
+  <hr />
+  <div class="frame">
+    <img src="donk.jpg">
+  </div>
+  <div id="by">
+    <strong>Donk</strong><br />
+    <cite>Max Terry</cite>
+    <time>2024-08-21</time>
   </div>
 </main>
 
@@ -146,9 +146,9 @@ footer {
     return canvas.toDataURL('image/png');
   }
 
-  document.querySelector('#frame').addEventListener('click', function() {
+  document.querySelector('.frame').addEventListener('click', function() {
     if (!document.fullscreenElement) {
-      document.querySelector('#frame img').requestFullscreen();
+      document.querySelector('.frame img').requestFullscreen();
     } else {
       document.exitFullscreen();
     }
@@ -156,9 +156,9 @@ footer {
 
   document.addEventListener('fullscreenchange', function() {
     if (document.fullscreenElement) {
-      document.querySelector('#frame img').classList.add('fullscreen');
+      document.querySelector('.frame img').classList.add('fullscreen');
     } else {
-      document.querySelector('#frame img').classList.remove('fullscreen');
+      document.querySelector('.frame img').classList.remove('fullscreen');
     }
   });
 
